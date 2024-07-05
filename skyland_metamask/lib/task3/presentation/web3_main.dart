@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skyland_test/features/task3/presentation/bloc/meta_mask_bloc.dart';
+
+import 'bloc/meta_mask_bloc.dart';
 
 ///THIS CODE ONLY RUNS IN WEB AND USE THIS TO START THE SERVER[flutter run -d web-server]
 class MetaMaskHomescreen extends StatelessWidget {
