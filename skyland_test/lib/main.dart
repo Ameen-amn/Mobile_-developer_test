@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
  
       ],
       child: MaterialApp(
-        title: 'SkyLandd',
+        title: 'SkyLand',
         theme: ThemeData(
           textTheme: TextThemeContants.textTheme,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

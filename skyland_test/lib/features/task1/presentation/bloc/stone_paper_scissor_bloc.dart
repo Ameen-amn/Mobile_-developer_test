@@ -23,6 +23,7 @@ class StonePaperScissorBloc
       void close() => subscription?.cancel();
 
       emit(state.copyWith(loading: true));
+      // Game begin
       emit(state.copyWith(
           loading: false,
           started: true,
@@ -38,17 +39,25 @@ class StonePaperScissorBloc
       });
 
       await Future.delayed(const Duration(seconds: 4)).then((value) async {
+        // game over
         emit(state.copyWith(
             started: false,
             ended: true,
             gameStatus: 'Play Again',
             aiSelectedSign: await gameUseCase.signSelectionByMobile(),
             playing: false));
+        //Stream closed
         close();
         final GameResult result = await gameUseCase.gameResult(
             mobileSign: state.aiSelectedSign, userSign: state.userSelectedSign);
         emit(state.copyWith(
-          winner: GameResult.mobileWin == result?'Looser':GameResult.humanWin==result?'Winner':'Draw',
+          winner: GameResult.mobileWin == result
+              ? 'Looser'
+              : GameResult.humanWin == result
+                  ? 'Winner'
+                  : GameResult.draw == result
+                      ? 'Draw'
+                      : 'Choose a Sign',
           mobileScore:
               state.mobileScore + (GameResult.mobileWin == result ? 1 : 0),
           userScore: state.userScore + (GameResult.humanWin == result ? 1 : 0),
